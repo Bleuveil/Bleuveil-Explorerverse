@@ -1,247 +1,249 @@
-/* Global hidden class */
-.hidden {
-  display: none;
+/* Global */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    background-color: #0c1021;
+    color: white;
 }
 
-/* Screen styling */
+/* Screen layout */
 .screen {
-  text-align: center;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  color: white;
-  background-color: #0a162f;
-  border-radius: 10px;
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    margin: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #00f0ff;
 }
 
 /* Buttons */
 button {
-  display: block;
-  width: 200px;
-  padding: 15px 25px;
-  margin: 10px auto;
-  font-size: 1.3em;
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 220px;
+    margin: 12px auto;
+    padding: 14px 24px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+    background-color: #005ecb;
+    transform: translateY(-2px);
 }
 
 button:active {
-  background-color: #004085;
-  transform: translateY(0);
+    background-color: #0049a8;
+    transform: translateY(0);
 }
 
+/* Ops buttons */
 .ops-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
 }
 
-/* Dashboard */
-.dashboard {
-  margin-bottom: 20px;
-  padding: 15px;
-  background-color: #102340;
-  border: 2px solid #1bb0ff;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(27, 176, 255, 0.3);
+/* Panel overlays */
+.panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #121a33;
+    color: white;
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #00f0ff;
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    z-index: 1000;
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
 }
 
-.dashboard-content {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+/* Mission Briefs */
+.mission-brief {
+    background-color: #0c1021;
+    border: 1px solid #00f0ff;
+    border-radius: 6px;
+    padding: 12px;
+    margin-bottom: 10px;
+    text-align: left;
 }
 
-#mission-counter {
-  font-size: 1.2em;
-  color: #1bb0ff;
+/* Scan Grid Animation */
+.scan-grid {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    background: repeating-linear-gradient(
+        45deg,
+        #00f0ff,
+        #00f0ff 10px,
+        #121a33 10px,
+        #121a33 20px
+    );
+    animation: scan 2s linear infinite;
 }
 
-/* Badges */
-.badge-overview {
-  display: flex;
-  justify-content: center;
-  gap: 12px;
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
 }
 
-.badge {
-  padding: 6px 14px;
-  background-color: #12284a;
-  border-radius: 6px;
-  font-size: 0.95em;
-  color: #b8e1ff;
-  border: 1px solid #1bb0ff;
-  transition: all 0.2s ease;
+/* Drone Feed Flicker */
+.drone-feed {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    background-color: #1d1d1d;
+    animation: flicker 0.5s infinite;
 }
 
-.badge.unlocked {
-  background-color: #0d6efd;
-  color: white;
-  box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
-  font-weight: bold;
-}
-
-.badge.locked {
-  opacity: 0.4;
-}
-
-/* Rover Bot */
-.rover {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 10px auto;
-  animation: move-rover 3s linear infinite;
-}
-
-.rover-body {
-  width: 60px;
-  height: 40px;
-  background-color: #1bb0ff;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 0;
-}
-
-.rover-antenna {
-  width: 10px;
-  height: 20px;
-  background-color: #0a162f;
-  position: absolute;
-  top: 0;
-  left: 25px;
-  animation: blink-antenna 1s infinite;
-}
-
-.rover-antenna::after {
-  content: '';
-  width: 10px;
-  height: 10px;
-  background-color: #1bb0ff;
-  border-radius: 50%;
-  position: absolute;
-  top: -5px;
-  animation: glow-antenna 1s infinite;
-}
-
-@keyframes move-rover {
-  0% { transform: translateX(-20px); }
-  50% { transform: translateX(20px); }
-  100% { transform: translateX(-20px); }
-}
-
-@keyframes blink-antenna {
-  0%, 50% { background-color: #0a162f; }
-  51%, 100% { background-color: #1bb0ff; }
-}
-
-@keyframes glow-antenna {
-  0%, 50% { box-shadow: 0 0 5px rgba(27, 176, 255, 0.5); }
-  51%, 100% { box-shadow: 0 0 10px rgba(27, 176, 255, 1); }
-}
-
-.rover-message {
-  margin-top: 10px;
-  padding: 10px;
-  background-color: #132644;
-  border-radius: 5px;
-  font-style: italic;
-  color: #aee3ff;
-  animation: fade-message 0.5s ease-in-out;
-}
-
-@keyframes fade-message {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
 
 /* Logbook */
 .logbook-section {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #122a4f;
-  border-radius: 8px;
-  text-align: left;
+    background-color: #162447;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.2);
+    text-align: left;
 }
 
 #logbook {
-  max-height: 160px;
-  overflow-y: auto;
-  font-size: 0.9em;
-  color: #aee3ff;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #b9dcff;
+    font-size: 0.9em;
 }
 
 .logbook-entry {
-  margin: 5px 0;
+    margin: 5px 0;
 }
 
-/* Panels */
-.panel {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #102744;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  max-width: 90%;
-  max-height: 80%;
-  overflow-y: auto;
-  z-index: 1000;
+/* Dashboard */
+.dashboard {
+    background-color: #111b30;
+    border: 2px solid #00f0ff;
+    border-radius: 10px;
+    padding: 16px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 16px rgba(0, 240, 255, 0.2);
 }
 
-.mission-brief {
-  margin: 10px 0;
-  padding: 10px;
-  background-color: #142b4e;
-  border-radius: 5px;
-  color: white;
+#mission-counter {
+    font-size: 1.1em;
+    color: #00f0ff;
+    margin-bottom: 10px;
 }
 
-/* Scan animation */
-.scan-grid {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto;
-  background: repeating-linear-gradient(
-    45deg,
-    #1bb0ff,
-    #1bb0ff 10px,
-    #0a162f 10px,
-    #0a162f 20px
-  );
-  animation: scan 2s linear infinite;
+.badge-overview {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 10px;
 }
 
-@keyframes scan {
-  0% { background-position: 0 0; }
-  100% { background-position: 28px 28px; }
+.badge {
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 0.95em;
+    background-color: #ffde00;
+    color: black;
+    font-weight: bold;
+    box-shadow: 0 0 5px rgba(255, 222, 0, 0.5);
+    transition: transform 0.2s ease;
 }
 
-/* Drone flicker */
-.drone-feed {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto;
-  background-color: #1a1a1a;
-  animation: flicker 0.5s infinite;
+.badge.locked {
+    background-color: #3a3a3a;
+    color: #aaa;
+    box-shadow: none;
+    opacity: 0.6;
 }
 
-@keyframes flicker {
-  0% { opacity: 1; }
-  50% { opacity: 0.7; }
-  100% { opacity: 1; }
+.badge.unlocked:hover {
+    transform: scale(1.05);
+}
+
+/* R.O.V.E.R. */
+.rover {
+    width: 50px;
+    height: 50px;
+    margin: 10px auto;
+    position: relative;
+    animation: move-rover 3s linear infinite;
+}
+
+.rover-body {
+    width: 50px;
+    height: 30px;
+    background-color: #00f0ff;
+    border-radius: 4px;
+}
+
+.rover-antenna {
+    width: 8px;
+    height: 18px;
+    background-color: #121a33;
+    position: absolute;
+    top: -18px;
+    left: 21px;
+}
+
+.rover-antenna::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    background-color: #00f0ff;
+    border-radius: 50%;
+    position: absolute;
+    top: -5px;
+    left: -1px;
+    animation: glow-antenna 1s infinite;
+}
+
+@keyframes glow-antenna {
+    0%, 50% { box-shadow: 0 0 5px rgba(0, 240, 255, 0.5); }
+    51%, 100% { box-shadow: 0 0 10px rgba(0, 240, 255, 1); }
+}
+
+@keyframes move-rover {
+    0% { transform: translateX(-10px); }
+    50% { transform: translateX(10px); }
+    100% { transform: translateX(-10px); }
+}
+
+.rover-message {
+    margin-top: 10px;
+    font-style: italic;
+    font-size: 0.95em;
+    color: #c2f9ff;
+    animation: fade-message 0.4s ease-in;
+}
+
+@keyframes fade-message {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
