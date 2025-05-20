@@ -1,220 +1,300 @@
-/* General Layout */
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #0a0f2c;
-  color: #ffffff;
-}
-
-.screen {
-  text-align: center;
-  padding: 30px 20px;
-  max-width: 700px;
-  margin: auto;
-  background-color: #0f183d;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 0, 255, 0.1);
-  margin-top: 40px;
-}
-
-h1, h2, h3 {
-  color: #58aaff;
-  margin-bottom: 10px;
-}
-
-h4 {
-  color: #00e6ff;
-  margin-bottom: 5px;
-}
-
-p {
-  color: #d0e2ff;
-}
-
-button {
-  display: block;
-  width: 220px;
-  margin: 12px auto;
-  padding: 14px;
-  font-size: 1.1em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #1e66f7;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(30, 102, 247, 0.4);
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0b4fc1;
-  transform: translateY(-2px);
-}
-
-button:active {
-  background-color: #08388f;
-  transform: translateY(0);
-}
-
+/* Hiding screens */
 .hidden {
   display: none;
 }
 
-/* Ops Buttons */
+/* Screen layout */
+.screen {
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  color: white;
+  background-color: #1a1a2e; /* deep space blue */
+  border-radius: 10px;
+}
+
+/* Buttons layout */
 .ops-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 14px;
-  margin-top: 20px;
+  gap: 10px;
 }
 
-/* Dashboard */
+/* Base button style */
+button {
+  display: block;
+  width: 200px;
+  padding: 15px 25px;
+  margin: 10px auto;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button:active {
+  background-color: #004085;
+  transform: translateY(0);
+}
+
+/* Launch and mission start buttons */
+#launch-button {
+  background-color: #4CAF50;
+}
+#launch-button:hover {
+  background-color: #45a049;
+}
+#launch-button:active {
+  background-color: #3e8e41;
+}
+
+#start-mission-button,
+#begin-simulation-button {
+  background-color: #FFC107;
+  color: #333;
+}
+#start-mission-button:hover,
+#begin-simulation-button:hover {
+  background-color: #e0a800;
+}
+#start-mission-button:active,
+#begin-simulation-button:active {
+  background-color: #c69500;
+}
+
+/* Individual ops button colors */
+#scan-terrain-button {
+  background-color: #17a2b8;
+}
+#scan-terrain-button:hover {
+  background-color: #138496;
+}
+
+#deploy-drone-button {
+  background-color: #dc3545;
+}
+#deploy-drone-button:hover {
+  background-color: #c82333;
+}
+
+#view-briefs-button {
+  background-color: #6f42c1;
+}
+#view-briefs-button:hover {
+  background-color: #5a32a3;
+}
+
+#recharge-suit-button {
+  background-color: #28a745;
+}
+#recharge-suit-button:hover {
+  background-color: #218838;
+}
+
+/* Dashboard styling */
 .dashboard {
-  margin-bottom: 25px;
+  margin-bottom: 20px;
   padding: 15px;
-  background-color: #0e1a3d;
-  border-radius: 10px;
-  box-shadow: 0 0 8px #0040ff88;
+  background-color: #162447;
+  border: 2px solid #17a2b8;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(23, 162, 184, 0.3);
 }
 
-.dashboard p {
-  font-size: 1.2em;
-  color: #9edfff;
+.dashboard-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-#rover-message {
+#mission-counter {
+  font-size: 1.1em;
+  color: #17a2b8;
+}
+
+/* Badge section */
+.badge-overview {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.badge {
+  display: inline-block;
+  padding: 5px 10px;
+  background-color: #444;
+  border-radius: 5px;
+  font-size: 0.9em;
+}
+
+.badge.locked {
+  opacity: 0.5;
+}
+
+.badge.unlocked {
+  background-color: #FFD700;
+  color: #333;
+  opacity: 1;
+  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+/* R.O.V.E.R. assistant styles */
+.rover {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  margin: 10px auto;
+  animation: move-rover 3s linear infinite;
+}
+
+.rover-body {
+  width: 60px;
+  height: 40px;
+  background-color: #17a2b8;
+  border-radius: 5px;
+  position: absolute;
+  bottom: 0;
+}
+
+.rover-antenna {
+  width: 10px;
+  height: 20px;
+  background-color: #162447;
+  position: absolute;
+  top: 0;
+  left: 25px;
+  animation: blink-antenna 1s infinite;
+}
+
+.rover-antenna::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #17a2b8;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  animation: glow-antenna 1s infinite;
+}
+
+@keyframes move-rover {
+  0% { transform: translateX(-20px); }
+  50% { transform: translateX(20px); }
+  100% { transform: translateX(-20px); }
+}
+
+@keyframes blink-antenna {
+  0%, 50% { background-color: #162447; }
+  51%, 100% { background-color: #17a2b8; }
+}
+
+@keyframes glow-antenna {
+  0%, 50% { box-shadow: 0 0 5px rgba(23, 162, 184, 0.5); }
+  51%, 100% { box-shadow: 0 0 10px rgba(23, 162, 184, 1); }
+}
+
+/* Rover dialogue */
+.rover-message {
   margin-top: 10px;
-  color: #7de1ff;
+  padding: 10px;
+  background-color: #1a1a2e;
+  border-radius: 5px;
   font-style: italic;
+  color: #ccc;
+  animation: fade-message 0.5s ease-in-out;
 }
 
-/* Panels (Overlays) */
+@keyframes fade-message {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* Logbook section */
+.logbook-section {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #162447;
+  border-radius: 8px;
+  text-align: left;
+}
+
+#logbook {
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 0.9em;
+  color: #ccc;
+}
+
+.logbook-entry {
+  margin: 5px 0;
+}
+
+/* Overlay panels */
 .panel {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #11224d;
-  padding: 25px;
-  border-radius: 12px;
-  box-shadow: 0 0 15px #00bfff88;
-  z-index: 1000;
+  background-color: #162447;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   max-width: 90%;
   max-height: 80%;
   overflow-y: auto;
+  z-index: 1000;
 }
 
-/* Badge Section */
-.badge-section {
-  margin-top: 30px;
-  background-color: #11224d;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px #002c77;
+.mission-brief {
+  margin: 10px 0;
+  padding: 10px;
+  background-color: #1a1a2e;
+  border-radius: 5px;
 }
 
-.badge-section h3 {
-  margin-bottom: 10px;
-}
-
-.badge {
-  display: inline-block;
-  margin: 8px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  font-size: 0.95em;
-  font-weight: bold;
-  color: #ffffff;
-  background-color: #1c3fcf;
-  box-shadow: 0 0 5px rgba(0, 132, 255, 0.4);
-  transition: 0.2s;
-}
-
-.badge.locked {
-  background-color: #2c3750;
-  color: #7a8cab;
-  box-shadow: none;
-}
-
-.badge.unlocked {
-  background-color: #009dff;
-  box-shadow: 0 0 10px #00ccff;
-}
-
-/* Logbook Section */
-.logbook-section {
-  margin-top: 30px;
-  background-color: #0e1a3d;
-  padding: 15px;
-  border-radius: 10px;
-  text-align: left;
-  box-shadow: 0 0 10px #002c77;
-}
-
-.logbook-section h3 {
-  margin-bottom: 10px;
-  color: #58aaff;
-}
-
-#logbook {
-  max-height: 200px;
-  overflow-y: auto;
-  font-size: 0.95em;
-  line-height: 1.4;
-  color: #d0e2ff;
-}
-
-/* Scan Grid Animation */
+/* Scan animation */
 .scan-grid {
-  width: 120px;
-  height: 120px;
-  margin: 12px auto;
+  width: 100px;
+  height: 100px;
+  margin: 10px auto;
   background: repeating-linear-gradient(
     45deg,
-    #00aaff,
-    #00aaff 10px,
-    #0a0f2c 10px,
-    #0a0f2c 20px
+    #17a2b8,
+    #17a2b8 10px,
+    #162447 10px,
+    #162447 20px
   );
   animation: scan 2s linear infinite;
 }
 
 @keyframes scan {
   0% { background-position: 0 0; }
-  100% { background-position: 30px 30px; }
+  100% { background-position: 28px 28px; }
 }
 
-/* Drone Feed */
+/* Drone flicker */
 .drone-feed {
   width: 100px;
   height: 100px;
   margin: 10px auto;
-  background-color: #1c1c1c;
-  animation: flicker 0.6s infinite;
-  border-radius: 10px;
+  background-color: #333;
+  animation: flicker 0.5s infinite;
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.6; }
-}
-
-/* Mission Briefs */
-.mission-brief {
-  background-color: #0d1738;
-  border: 1px solid #1c3fcf;
-  border-radius: 8px;
-  padding: 10px;
-  margin: 10px 0;
-  color: #b6d9ff;
-}
-
-/* Weather Panel */
-#weather-data {
-  color: #93f7ff;
-  font-size: 1.1em;
-  margin: 15px auto;
-  max-width: 80%;
+  0% { opacity: 1; }
+  50% { opacity: 0.7; }
+  100% { opacity: 1; }
 }
