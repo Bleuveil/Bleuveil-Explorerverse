@@ -16,19 +16,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (launchButton) {
     launchButton.addEventListener('click', () => {
+      console.log("Launch button clicked");
       showScreen(missionBriefingScreen);
     });
   }
 
   if (startMissionButton) {
     startMissionButton.addEventListener('click', () => {
+      console.log("Start Mission clicked");
       showScreen(gameAreaScreen);
     });
   }
 
   if (startSimulationButton) {
     startSimulationButton.addEventListener('click', () => {
-      alert("Simulation starting soon!");
+      console.log("Simulation started!");
+      alert("Training module: UNDERWAY.\nMission 1 will deploy soon!");
     });
   }
 
