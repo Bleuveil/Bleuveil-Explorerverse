@@ -4,10 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#000033" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="BLEUVEIL Explorerverse" />
+  <link rel="manifest" href="manifest.json" />
   <link rel="stylesheet" href="main.css" />
   <title>BLEUVEIL Explorerverse</title>
 </head>
 <body>
+
   <!-- Title Screen -->
   <div id="title-screen" class="screen">
     <h1>BLEUVEIL Explorerverse</h1>
@@ -15,7 +20,7 @@
     <button id="launch-button">Launch Mission</button>
   </div>
 
-  <!-- Mission Briefing -->
+  <!-- Mission Briefing Screen -->
   <div id="mission-briefing-screen" class="screen hidden">
     <h2>Mars Mission Briefing</h2>
     <p>Mission Objective: Establish Mars Base Alpha.</p>
@@ -25,7 +30,7 @@
     <button id="start-mission-button">Start Mission</button>
   </div>
 
-  <!-- Game Area Welcome -->
+  <!-- Game Area Screen -->
   <div id="game-area-screen" class="screen hidden">
     <h2>Welcome to Mars!</h2>
     <p>This is the start of your BLEUVEIL Mars training. More modules coming soon.</p>
@@ -38,40 +43,53 @@
     <p>Explorer, choose your action:</p>
 
     <!-- Dashboard -->
-    <div id="dashboard">
-      <p id="mission-counter">Missions Completed: 0/3</p>
-      <div id="rover-container">
-        <div id="rover-sprite"></div>
-        <div id="rover-message">Initializing R.O.V.E.R...</div>
-      </div>
+    <div id="dashboard" class="dashboard">
+      <p><strong>Missions Completed:</strong> <span id="mission-counter">0</span>/4</p>
+      <div id="rover-message" class="rover-message">Initializing R.O.V.E.R...</div>
     </div>
 
-    <!-- Ops Buttons -->
+    <!-- Buttons -->
     <div class="ops-buttons">
       <button id="scan-terrain-button">Scan Terrain</button>
       <button id="deploy-drone-button">Deploy Recon Drone</button>
       <button id="view-briefs-button">View Mission Briefs</button>
       <button id="recharge-suit-button">Recharge Suit</button>
-      <button id="weather-mission-button">Analyze Weather Station</button>
+      <button id="analyze-weather-button">Analyze Weather Station</button>
     </div>
 
-    <!-- Suit Badges -->
+    <!-- Badges -->
     <div class="badge-section">
       <h3>Suit Badges</h3>
-      <span class="badge locked" id="badge-scan">🔒 Scan Master</span>
-      <span class="badge locked" id="badge-drone">🔒 Drone Pilot</span>
-      <span class="badge locked" id="badge-briefs">🔒 Mission Expert</span>
-      <span class="badge locked" id="badge-weather">🔒 Weather Watcher</span>
+      <div id="badge-scan" class="badge locked">🔒 Scan Master</div>
+      <div id="badge-drone" class="badge locked">🔒 Drone Pilot</div>
+      <div id="badge-briefs" class="badge locked">🔒 Mission Expert</div>
+      <div id="badge-weather" class="badge locked">🔒 Weather Watcher</div>
     </div>
 
-    <!-- Mission Logbook -->
+    <!-- Logbook -->
     <div class="logbook-section">
       <h3>Mission Logbook</h3>
       <div id="logbook"></div>
     </div>
   </div>
 
-  <!-- Panel: Mission Briefs -->
+  <!-- Scan Panel -->
+  <div id="scan-result-panel" class="panel hidden">
+    <h3>Scan Results</h3>
+    <div class="scan-grid"></div>
+    <p id="scan-discovery">Analyzing terrain...</p>
+    <button id="close-scan-button">Close</button>
+  </div>
+
+  <!-- Drone Panel -->
+  <div id="drone-result-panel" class="panel hidden">
+    <h3>Drone Deployment</h3>
+    <p id="drone-countdown">Launching in 3...</p>
+    <div id="drone-log" class="drone-feed">Initializing...</div>
+    <button id="close-drone-button">Close</button>
+  </div>
+
+  <!-- Mission Briefs Panel -->
   <div id="mission-briefs-panel" class="panel hidden">
     <h3>Mission Briefs</h3>
     <div class="mission-brief">
@@ -89,34 +107,14 @@
     <button id="close-briefs-button">Close</button>
   </div>
 
-  <!-- Panel: Scan Result -->
-  <div id="scan-result-panel" class="panel hidden">
-    <h3>Scan Results</h3>
-    <div class="scan-grid"></div>
-    <p id="scan-discovery">...</p>
-    <button id="close-scan-button">Close</button>
-  </div>
-
-  <!-- Panel: Drone Deployment -->
-  <div id="drone-result-panel" class="panel hidden">
-    <h3>Drone Deployment</h3>
-    <p id="drone-countdown">Launching in 3...</p>
-    <div class="drone-feed"></div>
-    <p id="drone-log">Awaiting feed...</p>
-    <button id="close-drone-button">Close</button>
-  </div>
-
-  <!-- Panel: Weather Mission -->
-  <div id="weather-mission-panel" class="panel hidden">
-    <h3>Weather Station</h3>
-    <div id="weather-sensor" class="sensor-spinner"></div>
-    <p id="weather-data">Awaiting data...</p>
-    <button id="weather-activate-button">Activate Sensors</button>
-    <button id="weather-adjust-button" class="hidden">Adjust Solar Panels</button>
-    <p id="weather-fact" class="hidden">...</p>
+  <!-- Weather Panel -->
+  <div id="weather-panel" class="panel hidden">
+    <h3>Weather Station Report</h3>
+    <div id="weather-data">Analyzing weather...</div>
     <button id="close-weather-button">Close</button>
   </div>
 
+  <!-- JavaScript -->
   <script src="main.js"></script>
 </body>
 </html>
