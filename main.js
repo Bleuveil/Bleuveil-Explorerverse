@@ -1,37 +1,39 @@
-// Register Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js', { scope: './' })
-    .then(() => console.log("Service Worker Registered"))
-    .catch((err) => console.error("Service Worker Registration Failed: ", err));
-}
+document.addEventListener('DOMContentLoaded', () => {
+    // Get references to all screens
+    const titleScreen = document.getElementById('title-screen');
+    const missionBriefingScreen = document.getElementById('mission-briefing-screen');
+    const gameAreaScreen = document.getElementById('game-area-screen');
 
-// App Logic
-document.addEventListener("DOMContentLoaded", () => {
-  const launchButton = document.getElementById("launch-button");
-  const titleScreen = document.querySelector(".title-screen");
-  const missionScreen = document.querySelector(".mission-screen");
-  const missionText = document.getElementById("mission-text");
+    // Get references to the buttons
+    const launchButton = document.getElementById('launch-button');
+    const startMissionButton = document.getElementById('start-mission-button');
 
-  // Simulate Mission Briefing
-  const missionBriefing = [
-    "Mission Objective: Establish Mars Base Alpha.",
-    "Safety Check: Air quality nominal.",
-    "Exploration Area: Quadrant 42B.",
-    "Good luck, Explorer!"
-  ];
+    // Function to show a specific screen and hide others
+    function showScreen(screenToShow) {
+        // Hide all screens first
+        titleScreen.classList.add('hidden');
+        missionBriefingScreen.classList.add('hidden');
+        gameAreaScreen.classList.add('hidden');
 
-  launchButton.addEventListener("click", () => {
-    titleScreen.classList.add("hidden");
-    missionScreen.classList.remove("hidden");
+        // Then show the desired screen
+        screenToShow.classList.remove('hidden');
+    }
 
-    let index = 0;
-    const interval = setInterval(() => {
-      if (index < missionBriefing.length) {
-        missionText.innerHTML += `<p>${missionBriefing[index]}</p>`;
-        index++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 2000);
-  });
+    // Event Listener for the "Launch Mission" button (on the title screen)
+    if (launchButton) {
+        launchButton.addEventListener('click', () => {
+            showScreen(missionBriefingScreen); // Go to the mission briefing
+        });
+    }
+
+    // Event Listener for the "Start Mission" button (on the mission briefing screen)
+    if (startMissionButton) {
+        startMissionButton.addEventListener('click', () => {
+            showScreen(gameAreaScreen); // Go to the game area
+            console.log("Game started! Actual game logic will be loaded here.");
+        });
+    }
+
+    // Initially show the title screen when the page loads
+    showScreen(titleScreen);
 });
