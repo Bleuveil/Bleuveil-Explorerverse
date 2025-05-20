@@ -1,39 +1,27 @@
 document.addEventListener('DOMContentLoaded', () => {
   const titleScreen = document.getElementById('title-screen');
-  const missionBriefingScreen = document.getElementById('mission-briefing-screen');
-  const gameAreaScreen = document.getElementById('game-area-screen');
+  const briefingScreen = document.getElementById('mission-briefing-screen');
+  const opsCenter = document.getElementById('mars-ops-center');
 
-  const launchButton = document.getElementById('launch-button');
-  const startMissionButton = document.getElementById('start-mission-button');
-  const startSimulationButton = document.getElementById('start-simulation-button');
+  const launchBtn = document.getElementById('launch-button');
+  const startMissionBtn = document.getElementById('start-mission-button');
 
-  function showScreen(screenToShow) {
-    [titleScreen, missionBriefingScreen, gameAreaScreen].forEach(screen => {
-      screen.classList.add('hidden');
-    });
-    screenToShow.classList.remove('hidden');
+  function showScreen(screen) {
+    titleScreen.classList.add('hidden');
+    briefingScreen.classList.add('hidden');
+    opsCenter.classList.add('hidden');
+    screen.classList.remove('hidden');
   }
 
-  if (launchButton) {
-    launchButton.addEventListener('click', () => {
-      console.log("Launch button clicked");
-      showScreen(missionBriefingScreen);
-    });
-  }
+  launchBtn.addEventListener('click', () => {
+    showScreen(briefingScreen);
+  });
 
-  if (startMissionButton) {
-    startMissionButton.addEventListener('click', () => {
-      console.log("Start Mission clicked");
-      showScreen(gameAreaScreen);
-    });
-  }
-
-  if (startSimulationButton) {
-    startSimulationButton.addEventListener('click', () => {
-      console.log("Simulation started!");
-      alert("Training module: UNDERWAY.\nMission 1 will deploy soon!");
-    });
-  }
-
-  showScreen(titleScreen);
+  startMissionBtn.addEventListener('click', () => {
+    showScreen(opsCenter);
+  });
 });
+
+function showOpsMessage(message) {
+  alert("Ops Center: " + message);
+}
