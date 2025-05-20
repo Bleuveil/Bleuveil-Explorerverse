@@ -23,9 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   if (startMissionButton) {
     startMissionButton.addEventListener('click', () => {
       showScreen(gameAreaScreen);
-      console.log("Game started! Actual game logic will be loaded here.");
     });
   }
 
+  // Start at title screen
   showScreen(titleScreen);
 });
