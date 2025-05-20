@@ -1,62 +1,212 @@
-body {
-  background-color: #000033;
-  font-family: 'Arial', sans-serif;
-  color: white;
-  margin: 0;
-  padding: 0;
-  text-align: center;
-}
-
-.screen {
-  padding: 20px;
-  margin: auto;
-  max-width: 600px;
-}
-
+/* Ensures elements with the hidden class are not displayed */
 .hidden {
-  display: none;
+    display: none;
+}
+
+/* Basic styling for screens */
+.screen {
+    text-align: center;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    color: white;
+    background-color: #1a1a2e; /* Dark space theme */
+    border-radius: 10px;
+}
+
+/* Styling for ops buttons */
+.ops-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
 }
 
 button {
-  display: block;
-  width: 220px;
-  padding: 14px 20px;
-  margin: 20px auto;
-  font-size: 1em;
-  font-weight: bold;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    display: block;
+    width: 200px;
+    padding: 15px 25px;
+    margin: 10px auto;
+    font-size: 1.3em;
+    font-weight: bold;
+    color: white;
+    background-color: #007bff; /* Blue */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px);
 }
 
+button:active {
+    background-color: #004085;
+    transform: translateY(0);
+}
+
+/* Specific button styles */
 #launch-button {
-  background-color: #28a745;
+    background-color: #4CAF50; /* Green for launch */
 }
 
 #launch-button:hover {
-  background-color: #218838;
+    background-color: #45a049;
 }
 
-#start-mission-button {
-  background-color: #ffc107;
-  color: #333;
+#launch-button:active {
+    background-color: #3e8e41;
 }
 
-#start-mission-button:hover {
-  background-color: #e0a800;
+#start-mission-button, #begin-simulation-button {
+    background-color: #FFC107; /* Orange for start mission */
+    color: #333;
 }
 
-.ops-button {
-  background-color: #17a2b8;
+#start-mission-button:hover, #begin-simulation-button:hover {
+    background-color: #e0a800;
 }
 
-.ops-button:hover {
-  background-color: #117a8b;
+#start-mission-button:active, #begin-simulation-button:active {
+    background-color: #c69500;
+}
+
+#scan-terrain-button {
+    background-color: #17a2b8; /* Cyan for scan */
+}
+
+#scan-terrain-button:hover {
+    background-color: #138496;
+}
+
+#deploy-drone-button {
+    background-color: #dc3545; /* Red for drone */
+}
+
+#deploy-drone-button:hover {
+    background-color: #c82333;
+}
+
+#view-briefs-button {
+    background-color: #6f42c1; /* Purple for briefs */
+}
+
+#view-briefs-button:hover {
+    background-color: #5a32a3;
+}
+
+#recharge-suit-button {
+    background-color: #28a745; /* Green for recharge */
+}
+
+#recharge-suit-button:hover {
+    background-color: #218838;
+}
+
+/* Badge Section */
+.badge-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #162447;
+    border-radius: 8px;
+}
+
+.badge {
+    display: inline-block;
+    margin: 5px;
+    padding: 5px 10px;
+    background-color: #444;
+    border-radius: 5px;
+    font-size: 0.9em;
+}
+
+.badge.locked {
+    opacity: 0.5;
+}
+
+.badge.unlocked {
+    background-color: #FFD700; /* Gold for unlocked */
+    color: #333;
+    opacity: 1;
+}
+
+/* Logbook Section */
+.logbook-section {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #162447;
+    border-radius: 8px;
+    text-align: left;
+}
+
+#logbook {
+    max-height: 150px;
+    overflow-y: auto;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.logbook-entry {
+    margin: 5px 0;
+}
+
+/* Overlay Panels */
+.panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #162447;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+    z-index: 1000;
+}
+
+.mission-brief {
+    margin: 10px 0;
+    padding: 10px;
+    background-color: #1a1a2e;
+    border-radius: 5px;
+}
+
+/* Scan Grid Animation */
+.scan-grid {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    background: repeating-linear-gradient(
+        45deg,
+        #17a2b8,
+        #17a2b8 10px,
+        #162447 10px,
+        #162447 20px
+    );
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    0% { background-position: 0 0; }
+    100% { background-position: 28px 28px; }
+}
+
+/* Drone Feed Flicker Effect */
+.drone-feed {
+    width: 100px;
+    height: 100px;
+    margin: 10px auto;
+    background-color: #333;
+    animation: flicker 0.5s infinite;
+}
+
+@keyframes flicker {
+    0% { opacity: 1; }
+    50% { opacity: 0.7; }
+    100% { opacity: 1; }
 }
