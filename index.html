@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#000033">
-  <title>BLEUVEIL Explorerverse</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Bleuveil Explorerverse">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="main.css">
+  <title>Bleuveil Explorerverse</title>
 </head>
 <body>
+
   <div id="title-screen" class="screen">
     <h1>BLEUVEIL Explorerverse</h1>
     <p>Welcome, Explorer. Prepare for your Mars assignment. Safety protocols: engaged.</p>
@@ -27,6 +31,7 @@
   <div id="game-area-screen" class="screen hidden">
     <h2>Welcome to Mars!</h2>
     <p>This is the start of your BLEUVEIL Mars training. More modules coming soon.</p>
+    <button id="start-simulation-button">Begin Simulation</button>
   </div>
 
   <script src="main.js"></script>
