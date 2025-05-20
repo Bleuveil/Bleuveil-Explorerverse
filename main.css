@@ -1,178 +1,187 @@
-/* General Reset */
-.hidden {
-  display: none;
+/* General Screen Setup */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #0a192f;
+    color: #e0f1ff;
 }
 
-/* Core Screens */
 .screen {
-  text-align: center;
-  padding: 20px;
-  margin: 20px auto;
-  max-width: 600px;
-  color: white;
-  background-color: #1a1a2e;
-  border-radius: 10px;
+    text-align: center;
+    padding: 30px 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    background-color: #112240;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
 }
 
-/* Standard Button Style */
+/* Hide class */
+.hidden {
+    display: none;
+}
+
+/* Headings */
+h1, h2, h3 {
+    color: #64ffda;
+}
+
+/* Buttons (Unified Blue Style) */
 button {
-  display: block;
-  width: 80%;
-  max-width: 280px;
-  padding: 15px 20px;
-  margin: 12px auto;
-  font-size: 1.2em;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #007bff;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s ease, transform 0.2s ease;
+    display: block;
+    width: 90%;
+    max-width: 250px;
+    margin: 15px auto;
+    padding: 14px 24px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #1f6feb;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #0056b3;
-  transform: translateY(-2px);
+    background-color: #397de7;
+    transform: translateY(-2px);
 }
 
 button:active {
-  background-color: #003a80;
-  transform: translateY(0);
+    background-color: #265ecf;
+    transform: translateY(0);
 }
 
-/* Specific Buttons */
-#launch-button,
-#begin-simulation-button {
-  background-color: #4CAF50;
+/* Badge Section */
+.badge-section {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #0b2545;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px #0a192f;
 }
 
-#start-mission-button {
-  background-color: #FFC107;
-  color: #1a1a1a;
+.badge {
+    display: inline-block;
+    margin: 6px;
+    padding: 6px 12px;
+    font-size: 0.95em;
+    border-radius: 6px;
+    background-color: #183b66;
+    color: #ffffff;
+    border: 1px solid #1f6feb;
 }
 
-#scan-terrain-button {
-  background-color: #17a2b8;
+.badge.locked {
+    opacity: 0.4;
+    background-color: #0f2a44;
 }
 
-#deploy-drone-button {
-  background-color: #dc3545;
+.badge.unlocked {
+    background-color: #1f6feb;
+    color: #ffffff;
+    font-weight: bold;
+    opacity: 1;
 }
 
-#view-briefs-button {
-  background-color: #6f42c1;
+/* Logbook Section */
+.logbook-section {
+    margin-top: 25px;
+    padding: 16px;
+    background-color: #0b2545;
+    border-radius: 10px;
+    text-align: left;
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
 }
 
-#recharge-suit-button {
-  background-color: #28a745;
+#logbook {
+    font-size: 0.9em;
+    color: #a6c1e0;
+    max-height: 180px;
+    overflow-y: auto;
+    white-space: pre-line;
 }
 
-/* Panels and Overlay Windows */
+.logbook-entry {
+    margin: 6px 0;
+}
+
+/* Panels for overlays */
 .panel {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: #162447;
-  color: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  width: 85%;
-  max-width: 450px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.6);
-  z-index: 1000;
-  overflow-y: auto;
-  max-height: 80vh;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #112240;
+    color: #e0f1ff;
+    padding: 24px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.6);
+    z-index: 1000;
+    max-width: 90%;
+    max-height: 85%;
+    overflow-y: auto;
+    text-align: center;
 }
 
-/* Mission Briefs Styling */
+/* Mission Briefs */
 .mission-brief {
-  margin: 12px 0;
-  padding: 15px;
-  background-color: #1f2d5c;
-  color: #e0e0e0;
-  border-radius: 8px;
-  font-size: 1em;
-  text-align: left;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    background-color: #0a192f;
+    border: 1px solid #1f6feb;
+    border-radius: 8px;
+    padding: 15px;
+    margin: 12px 0;
+    text-align: left;
 }
 
 /* Scan Animation */
 .scan-grid {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto;
-  background: repeating-linear-gradient(
-    45deg,
-    #17a2b8,
-    #17a2b8 10px,
-    #162447 10px,
-    #162447 20px
-  );
-  animation: scan 2s linear infinite;
+    width: 100px;
+    height: 100px;
+    margin: 10px auto 20px;
+    background: repeating-linear-gradient(
+        45deg,
+        #1f6feb,
+        #1f6feb 10px,
+        #0a192f 10px,
+        #0a192f 20px
+    );
+    animation: scan 1.8s linear infinite;
 }
 
 @keyframes scan {
-  0% { background-position: 0 0; }
-  100% { background-position: 28px 28px; }
+    0% { background-position: 0 0; }
+    100% { background-position: 30px 30px; }
 }
 
 /* Drone Feed Flicker */
 .drone-feed {
-  width: 100px;
-  height: 100px;
-  margin: 10px auto;
-  background-color: #333;
-  animation: flicker 0.5s infinite;
+    width: 100px;
+    height: 100px;
+    margin: 10px auto 15px;
+    background-color: #1f6feb;
+    animation: flicker 0.5s infinite;
+    border-radius: 6px;
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.5; }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.65; }
 }
 
-/* Badge System */
-.badge-section {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #162447;
-  border-radius: 8px;
-}
+/* Responsive */
+@media screen and (max-width: 480px) {
+    .screen {
+        padding: 20px 10px;
+    }
 
-.badge {
-  display: inline-block;
-  margin: 5px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 0.9em;
-  background-color: #444;
-  color: #ccc;
-}
+    button {
+        font-size: 1em;
+        padding: 12px 20px;
+    }
 
-.badge.unlocked {
-  background-color: #FFD700;
-  color: #222;
-  font-weight: bold;
-}
-
-/* Logbook */
-.logbook-section {
-  margin-top: 20px;
-  padding: 10px;
-  background-color: #162447;
-  border-radius: 8px;
-  text-align: left;
-  color: #ccc;
-}
-
-#logbook {
-  max-height: 150px;
-  overflow-y: auto;
-  font-size: 0.9em;
-}
-
-.logbook-entry {
-  margin: 5px 0;
+    .badge {
+        font-size: 0.85em;
+    }
 }
