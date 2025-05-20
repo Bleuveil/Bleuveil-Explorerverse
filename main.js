@@ -1,17 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Screen references
   const titleScreen = document.getElementById('title-screen');
   const missionBriefingScreen = document.getElementById('mission-briefing-screen');
   const gameAreaScreen = document.getElementById('game-area-screen');
   const marsOpsScreen = document.getElementById('mars-ops-screen');
 
-  // Panels
   const missionBriefsPanel = document.getElementById('mission-briefs-panel');
   const scanResultPanel = document.getElementById('scan-result-panel');
   const droneResultPanel = document.getElementById('drone-result-panel');
-  const weatherPanel = document.getElementById('weather-panel');
 
-  // Buttons
   const launchButton = document.getElementById('launch-button');
   const startMissionButton = document.getElementById('start-mission-button');
   const beginSimulationButton = document.getElementById('begin-simulation-button');
@@ -19,56 +15,54 @@ document.addEventListener('DOMContentLoaded', () => {
   const deployDroneButton = document.getElementById('deploy-drone-button');
   const viewBriefsButton = document.getElementById('view-briefs-button');
   const rechargeSuitButton = document.getElementById('recharge-suit-button');
-  const analyzeWeatherButton = document.getElementById('analyze-weather-button');
   const closeBriefsButton = document.getElementById('close-briefs-button');
   const closeScanButton = document.getElementById('close-scan-button');
   const closeDroneButton = document.getElementById('close-drone-button');
-  const closeWeatherButton = document.getElementById('close-weather-button');
 
-  // Badges
+  const missionCounter = document.getElementById('mission-counter');
   const badgeScan = document.getElementById('badge-scan');
   const badgeDrone = document.getElementById('badge-drone');
   const badgeBriefs = document.getElementById('badge-briefs');
-  const badgeWeather = document.getElementById('badge-weather');
-
-  // Dashboard
-  const missionCountDisplay = document.getElementById('mission-count');
-  const roverMessage = document.getElementById('rover-message');
-
-  // Logbook
+  const roverText = document.getElementById('rover-text');
   const logbook = document.getElementById('logbook');
 
-  let completedMissions = new Set();
+  let completedMissions = 0;
+  const totalMissions = 3;
 
   function showScreen(screenToShow) {
-    [titleScreen, missionBriefingScreen, gameAreaScreen, marsOpsScreen].forEach(screen =>
-      screen.classList.add('hidden')
-    );
+    titleScreen.classList.add('hidden');
+    missionBriefingScreen.classList.add('hidden');
+    gameAreaScreen.classList.add('hidden');
+    marsOpsScreen.classList.add('hidden');
     screenToShow.classList.remove('hidden');
   }
 
   function addLogEntry(message) {
     const now = new Date();
-    const timestamp = `[${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}]`;
+    const timestamp = `${now.getHours()}:${String(now.getMinutes()).padStart(2, '0')}`;
     const entry = document.createElement('div');
-    entry.textContent = `${timestamp} ${message}`;
+    entry.className = 'logbook-entry';
+    entry.textContent = `[${timestamp}] ${message}`;
     logbook.appendChild(entry);
     logbook.scrollTop = logbook.scrollHeight;
   }
 
-  function updateMissionCount() {
-    missionCountDisplay.textContent = `Missions Completed: ${completedMissions.size}/4`;
+  function updateMissionCounter() {
+    completedMissions++;
+    if (completedMissions > totalMissions) completedMissions = totalMissions;
+    missionCounter.textContent = `Missions Completed: ${completedMissions}/${totalMissions}`;
   }
 
-  function unlockBadge(badgeElement, label, id) {
-    if (badgeElement.classList.contains('locked')) {
-      badgeElement.classList.remove('locked');
-      badgeElement.classList.add('unlocked');
-      badgeElement.textContent = label;
-      addLogEntry(`Badge unlocked: ${label}`);
-    }
-    completedMissions.add(id);
-    updateMissionCount();
+  const roverMessages = [
+    'Try scanning the terrain to find resources!',
+    'Mars has two moons, Phobos and Deimos!',
+    'Let’s deploy a drone to explore further!',
+    'Mission briefs have important tasks for us!'
+  ];
+  let messageIndex = 0;
+  function updateRoverMessage() {
+    roverText.textContent = roverMessages[messageIndex];
+    messageIndex = (messageIndex + 1) % roverMessages.length;
   }
 
   if (launchButton) {
@@ -88,11 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
   if (beginSimulationButton) {
     beginSimulationButton.addEventListener('click', () => {
       showScreen(marsOpsScreen);
-      addLogEntry('Training module: UNDERWAY. Awaiting mission selection...');
-      updateMissionCount();
-      setTimeout(() => {
-        roverMessage.textContent = 'Explorer, remember to scan the terrain!';
-      }, 1000);
+      addLogEntry('Training module: UNDERWAY.');
+      addLogEntry('R.O.V.E.R. activated.');
+      roverText.textContent = roverMessages[0];
+      setInterval(updateRoverMessage, 10000);
     });
   }
 
@@ -100,110 +93,78 @@ document.addEventListener('DOMContentLoaded', () => {
     scanTerrainButton.addEventListener('click', () => {
       scanResultPanel.classList.remove('hidden');
       const discoveries = [
-        'Rock formation detected: basalt, high iron oxide content.',
-        'Soil sample collected: traces of perchlorates found.',
-        'Cave opening spotted near southern ridge.'
+        'Basalt rock formation detected.',
+        'Soil sample shows perchlorate traces.',
+        'Crater rim indicates past water flow.'
       ];
-      const result = discoveries[Math.floor(Math.random() * discoveries.length)];
-      document.getElementById('scan-discovery').textContent = result;
-      addLogEntry(`Scan complete: ${result}`);
-      unlockBadge(badgeScan, '🌋 Scan Master', 'scan');
+      const discovery = discoveries[Math.floor(Math.random() * discoveries.length)];
+      document.getElementById('scan-discovery').textContent = discovery;
+      addLogEntry(`Terrain scan complete: ${discovery}`);
+
+      if (badgeScan.classList.contains('locked')) {
+        badgeScan.classList.remove('locked');
+        badgeScan.classList.add('unlocked');
+        badgeScan.textContent = '🌋 Scan Master';
+        addLogEntry('Badge unlocked: Scan Master!');
+        updateMissionCounter();
+      }
     });
   }
 
   if (deployDroneButton) {
     deployDroneButton.addEventListener('click', () => {
       droneResultPanel.classList.remove('hidden');
-      const countdown = document.getElementById('drone-countdown');
-      const feed = document.getElementById('drone-log');
-      let counter = 3;
-      countdown.textContent = `Launching in ${counter}...`;
+      const countdownElement = document.getElementById('drone-countdown');
+      let countdown = 3;
+      countdownElement.textContent = `Launching in ${countdown}...`;
       const interval = setInterval(() => {
-        counter--;
-        if (counter > 0) {
-          countdown.textContent = `Launching in ${counter}...`;
+        countdown--;
+        if (countdown > 0) {
+          countdownElement.textContent = `Launching in ${countdown}...`;
         } else {
           clearInterval(interval);
-          countdown.textContent = 'Drone launched!';
-          feed.textContent = 'Recon drone deployed to Sector 13D.';
+          countdownElement.textContent = 'Drone launched.';
+          document.getElementById('drone-log').textContent = 'Camera feed live.';
         }
       }, 1000);
-      addLogEntry('Recon drone deployed to Sector 13D.');
-      unlockBadge(badgeDrone, '🚁 Drone Pilot', 'drone');
+      addLogEntry('Drone deployed to Sector 13D.');
+
+      if (badgeDrone.classList.contains('locked')) {
+        badgeDrone.classList.remove('locked');
+        badgeDrone.classList.add('unlocked');
+        badgeDrone.textContent = '🚁 Drone Pilot';
+        addLogEntry('Badge unlocked: Drone Pilot!');
+        updateMissionCounter();
+      }
     });
   }
 
   if (viewBriefsButton) {
     viewBriefsButton.addEventListener('click', () => {
       missionBriefsPanel.classList.remove('hidden');
-      addLogEntry('Mission briefs accessed.');
-      unlockBadge(badgeBriefs, '📜 Mission Expert', 'briefs');
+      addLogEntry('Mission briefs reviewed.');
+
+      if (badgeBriefs.classList.contains('locked')) {
+        badgeBriefs.classList.remove('locked');
+        badgeBriefs.classList.add('unlocked');
+        badgeBriefs.textContent = '📜 Mission Expert';
+        addLogEntry('Badge unlocked: Mission Expert!');
+        updateMissionCounter();
+      }
     });
   }
 
   if (rechargeSuitButton) {
     rechargeSuitButton.addEventListener('click', () => {
-      addLogEntry('Suit recharge complete.');
-      alert('Suit recharge complete! Ready for action.');
+      addLogEntry('Suit recharged. Explorer is stable.');
+      alert('Suit recharge complete!');
     });
   }
 
-  if (analyzeWeatherButton) {
-    analyzeWeatherButton.addEventListener('click', () => {
-      weatherPanel.classList.remove('hidden');
-      const temp = Math.floor(Math.random() * 100) - 100;
-      const wind = Math.floor(Math.random() * 100);
-      const risk = ['Low', 'Moderate', 'High'][Math.floor(Math.random() * 3)];
-      const message = `Temperature: ${temp}°C\nWind Speed: ${wind} km/h\nSandstorm Risk: ${risk}`;
-      document.getElementById('weather-data').textContent = message;
-      addLogEntry(`Weather data collected. Risk: ${risk}`);
-      unlockBadge(badgeWeather, '⛅ Weather Watcher', 'weather');
-    });
-  }
+  if (closeBriefsButton) closeBriefsButton.addEventListener('click', () => missionBriefsPanel.classList.add('hidden'));
+  if (closeScanButton) closeScanButton.addEventListener('click', () => scanResultPanel.classList.add('hidden'));
+  if (closeDroneButton) closeDroneButton.addEventListener('click', () => droneResultPanel.classList.add('hidden'));
 
-  // Close buttons
-  if (closeBriefsButton) {
-    closeBriefsButton.addEventListener('click', () => {
-      missionBriefsPanel.classList.add('hidden');
-    });
-  }
-
-  if (closeScanButton) {
-    closeScanButton.addEventListener('click', () => {
-      scanResultPanel.classList.add('hidden');
-    });
-  }
-
-  if (closeDroneButton) {
-    closeDroneButton.addEventListener('click', () => {
-      droneResultPanel.classList.add('hidden');
-    });
-  }
-
-  if (closeWeatherButton) {
-    closeWeatherButton.addEventListener('click', () => {
-      weatherPanel.classList.add('hidden');
-    });
-  }
-
-  // ROVER message cycle
-  const roverMessages = [
-    'Explorer, remember to scan the terrain!',
-    'Tip: Drones work best near Sector 13D.',
-    'Mission briefs contain vital clues.',
-    'Watch out for dust storms near Base Alpha!',
-    'Mars is cold! Check the weather often.'
-  ];
-
-  let roverIndex = 0;
-  setInterval(() => {
-    if (marsOpsScreen && !marsOpsScreen.classList.contains('hidden')) {
-      roverMessage.textContent = roverMessages[roverIndex];
-      roverIndex = (roverIndex + 1) % roverMessages.length;
-    }
-  }, 8000);
-
-  // Init
   showScreen(titleScreen);
-  addLogEntry('BLEUVEIL system initialized.');
+  addLogEntry('Explorer system initialized.');
 });
