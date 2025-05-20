@@ -1,67 +1,62 @@
-/* Ensures elements with the hidden class are not displayed */
 .hidden {
-    display: none;
+  display: none;
 }
 
-/* Basic styling for screens */
 .screen {
-    text-align: center;
-    padding: 20px;
-    margin: 20px auto;
-    max-width: 600px; /* Adjust as needed */
-    color: white; /* Assuming dark background */
+  text-align: center;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 600px;
+  color: white;
 }
 
-/* Styling for buttons */
 button {
-    display: block;
-    width: 200px;
-    padding: 15px 25px;
-    margin: 30px auto;
-    font-size: 1.3em;
-    font-weight: bold;
-    color: white;
-    background-color: #007bff; /* Blue */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, transform 0.2s ease;
+  display: block;
+  width: 200px;
+  padding: 15px 25px;
+  margin: 30px auto;
+  font-size: 1.3em;
+  font-weight: bold;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-    transform: translateY(-2px);
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
 button:active {
-    background-color: #004085;
-    transform: translateY(0);
+  background-color: #004085;
+  transform: translateY(0);
 }
 
-/* Specific styling for launch button */
 #launch-button {
-    background-color: #4CAF50; /* Green for launch */
+  background-color: #4CAF50;
 }
 
 #launch-button:hover {
-    background-color: #45a049;
+  background-color: #45a049;
 }
 
 #launch-button:active {
-    background-color: #3e8e41;
+  background-color: #3e8e41;
 }
 
-/* Specific styling for start mission button */
 #start-mission-button {
-    background-color: #FFC107; /* Orange for start mission */
-    color: #333; /* Darker text for contrast on light button */
+  background-color: #FFC107;
+  color: #333;
 }
 
 #start-mission-button:hover {
-    background-color: #e0a800;
+  background-color: #e0a800;
 }
 
 #start-mission-button:active {
-    background-color: #c69500;
+  background-color: #c69500;
 }
