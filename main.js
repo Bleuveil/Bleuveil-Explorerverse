@@ -5,11 +5,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const launchButton = document.getElementById('launch-button');
   const startMissionButton = document.getElementById('start-mission-button');
+  const startSimulationButton = document.getElementById('start-simulation-button');
 
   function showScreen(screenToShow) {
-    titleScreen.classList.add('hidden');
-    missionBriefingScreen.classList.add('hidden');
-    gameAreaScreen.classList.add('hidden');
+    [titleScreen, missionBriefingScreen, gameAreaScreen].forEach(screen => {
+      screen.classList.add('hidden');
+    });
     screenToShow.classList.remove('hidden');
   }
 
@@ -22,6 +23,12 @@ document.addEventListener('DOMContentLoaded', () => {
   if (startMissionButton) {
     startMissionButton.addEventListener('click', () => {
       showScreen(gameAreaScreen);
+    });
+  }
+
+  if (startSimulationButton) {
+    startSimulationButton.addEventListener('click', () => {
+      alert("Simulation starting soon!");
     });
   }
 
