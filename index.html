@@ -28,10 +28,13 @@
     <button id="start-mission-button">Start Mission</button>
   </div>
 
-  <div id="game-area-screen" class="screen hidden">
-    <h2>Welcome to Mars!</h2>
-    <p>This is the start of your BLEUVEIL Mars training. More modules coming soon.</p>
-    <button id="start-simulation-button">Begin Simulation</button>
+  <div id="mars-ops-center" class="screen hidden">
+    <h2>Mars Ops Center</h2>
+    <p>Choose your next action:</p>
+    <button class="ops-button" onclick="showOpsMessage('Scanning terrain...')">Scan Terrain</button>
+    <button class="ops-button" onclick="showOpsMessage('Deploying drone...')">Deploy Recon Drone</button>
+    <button class="ops-button" onclick="showOpsMessage('Opening mission files...')">View Mission Briefs</button>
+    <button class="ops-button" onclick="showOpsMessage('Recharging systems...')">Recharge Suit</button>
   </div>
 
   <script src="main.js"></script>
