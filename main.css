@@ -1,28 +1,20 @@
-/* Hiding screens */
+/* Global hidden class */
 .hidden {
   display: none;
 }
 
-/* Screen layout */
+/* Screen styling */
 .screen {
   text-align: center;
   padding: 20px;
   margin: 20px auto;
   max-width: 600px;
   color: white;
-  background-color: #1a1a2e; /* deep space blue */
+  background-color: #0a162f;
   border-radius: 10px;
 }
 
-/* Buttons layout */
-.ops-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-}
-
-/* Base button style */
+/* Buttons */
 button {
   display: block;
   width: 200px;
@@ -49,68 +41,21 @@ button:active {
   transform: translateY(0);
 }
 
-/* Launch and mission start buttons */
-#launch-button {
-  background-color: #4CAF50;
-}
-#launch-button:hover {
-  background-color: #45a049;
-}
-#launch-button:active {
-  background-color: #3e8e41;
+.ops-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
 }
 
-#start-mission-button,
-#begin-simulation-button {
-  background-color: #FFC107;
-  color: #333;
-}
-#start-mission-button:hover,
-#begin-simulation-button:hover {
-  background-color: #e0a800;
-}
-#start-mission-button:active,
-#begin-simulation-button:active {
-  background-color: #c69500;
-}
-
-/* Individual ops button colors */
-#scan-terrain-button {
-  background-color: #17a2b8;
-}
-#scan-terrain-button:hover {
-  background-color: #138496;
-}
-
-#deploy-drone-button {
-  background-color: #dc3545;
-}
-#deploy-drone-button:hover {
-  background-color: #c82333;
-}
-
-#view-briefs-button {
-  background-color: #6f42c1;
-}
-#view-briefs-button:hover {
-  background-color: #5a32a3;
-}
-
-#recharge-suit-button {
-  background-color: #28a745;
-}
-#recharge-suit-button:hover {
-  background-color: #218838;
-}
-
-/* Dashboard styling */
+/* Dashboard */
 .dashboard {
   margin-bottom: 20px;
   padding: 15px;
-  background-color: #162447;
-  border: 2px solid #17a2b8;
+  background-color: #102340;
+  border: 2px solid #1bb0ff;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(23, 162, 184, 0.3);
+  box-shadow: 0 0 12px rgba(27, 176, 255, 0.3);
 }
 
 .dashboard-content {
@@ -120,37 +65,39 @@ button:active {
 }
 
 #mission-counter {
-  font-size: 1.1em;
-  color: #17a2b8;
+  font-size: 1.2em;
+  color: #1bb0ff;
 }
 
-/* Badge section */
+/* Badges */
 .badge-overview {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .badge {
-  display: inline-block;
-  padding: 5px 10px;
-  background-color: #444;
-  border-radius: 5px;
-  font-size: 0.9em;
-}
-
-.badge.locked {
-  opacity: 0.5;
+  padding: 6px 14px;
+  background-color: #12284a;
+  border-radius: 6px;
+  font-size: 0.95em;
+  color: #b8e1ff;
+  border: 1px solid #1bb0ff;
+  transition: all 0.2s ease;
 }
 
 .badge.unlocked {
-  background-color: #FFD700;
-  color: #333;
-  opacity: 1;
-  box-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+  background-color: #0d6efd;
+  color: white;
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.7);
+  font-weight: bold;
 }
 
-/* R.O.V.E.R. assistant styles */
+.badge.locked {
+  opacity: 0.4;
+}
+
+/* Rover Bot */
 .rover {
   position: relative;
   width: 60px;
@@ -162,7 +109,7 @@ button:active {
 .rover-body {
   width: 60px;
   height: 40px;
-  background-color: #17a2b8;
+  background-color: #1bb0ff;
   border-radius: 5px;
   position: absolute;
   bottom: 0;
@@ -171,7 +118,7 @@ button:active {
 .rover-antenna {
   width: 10px;
   height: 20px;
-  background-color: #162447;
+  background-color: #0a162f;
   position: absolute;
   top: 0;
   left: 25px;
@@ -182,7 +129,7 @@ button:active {
   content: '';
   width: 10px;
   height: 10px;
-  background-color: #17a2b8;
+  background-color: #1bb0ff;
   border-radius: 50%;
   position: absolute;
   top: -5px;
@@ -196,23 +143,22 @@ button:active {
 }
 
 @keyframes blink-antenna {
-  0%, 50% { background-color: #162447; }
-  51%, 100% { background-color: #17a2b8; }
+  0%, 50% { background-color: #0a162f; }
+  51%, 100% { background-color: #1bb0ff; }
 }
 
 @keyframes glow-antenna {
-  0%, 50% { box-shadow: 0 0 5px rgba(23, 162, 184, 0.5); }
-  51%, 100% { box-shadow: 0 0 10px rgba(23, 162, 184, 1); }
+  0%, 50% { box-shadow: 0 0 5px rgba(27, 176, 255, 0.5); }
+  51%, 100% { box-shadow: 0 0 10px rgba(27, 176, 255, 1); }
 }
 
-/* Rover dialogue */
 .rover-message {
   margin-top: 10px;
   padding: 10px;
-  background-color: #1a1a2e;
+  background-color: #132644;
   border-radius: 5px;
   font-style: italic;
-  color: #ccc;
+  color: #aee3ff;
   animation: fade-message 0.5s ease-in-out;
 }
 
@@ -221,33 +167,33 @@ button:active {
   100% { opacity: 1; }
 }
 
-/* Logbook section */
+/* Logbook */
 .logbook-section {
   margin-top: 20px;
   padding: 10px;
-  background-color: #162447;
+  background-color: #122a4f;
   border-radius: 8px;
   text-align: left;
 }
 
 #logbook {
-  max-height: 150px;
+  max-height: 160px;
   overflow-y: auto;
   font-size: 0.9em;
-  color: #ccc;
+  color: #aee3ff;
 }
 
 .logbook-entry {
   margin: 5px 0;
 }
 
-/* Overlay panels */
+/* Panels */
 .panel {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: #162447;
+  background-color: #102744;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -260,8 +206,9 @@ button:active {
 .mission-brief {
   margin: 10px 0;
   padding: 10px;
-  background-color: #1a1a2e;
+  background-color: #142b4e;
   border-radius: 5px;
+  color: white;
 }
 
 /* Scan animation */
@@ -271,10 +218,10 @@ button:active {
   margin: 10px auto;
   background: repeating-linear-gradient(
     45deg,
-    #17a2b8,
-    #17a2b8 10px,
-    #162447 10px,
-    #162447 20px
+    #1bb0ff,
+    #1bb0ff 10px,
+    #0a162f 10px,
+    #0a162f 20px
   );
   animation: scan 2s linear infinite;
 }
@@ -289,7 +236,7 @@ button:active {
   width: 100px;
   height: 100px;
   margin: 10px auto;
-  background-color: #333;
+  background-color: #1a1a1a;
   animation: flicker 0.5s infinite;
 }
 
