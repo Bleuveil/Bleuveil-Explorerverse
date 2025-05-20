@@ -3,21 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#000033" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-  <meta name="apple-mobile-web-app-title" content="Bleuveil Explorerverse" />
-  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#0a162f" />
   <link rel="stylesheet" href="main.css" />
-  <title>Bleuveil Explorerverse</title>
+  <title>BLEUVEIL Explorerverse</title>
 </head>
 <body>
+
+  <!-- Title Screen -->
   <div id="title-screen" class="screen">
     <h1>BLEUVEIL Explorerverse</h1>
     <p>Welcome, Explorer. Prepare for your Mars assignment. Safety protocols: engaged.</p>
     <button id="launch-button">Launch Mission</button>
   </div>
 
+  <!-- Mission Briefing Screen -->
   <div id="mission-briefing-screen" class="screen hidden">
     <h2>Mars Mission Briefing</h2>
     <p>Mission Objective: Establish Mars Base Alpha.</p>
@@ -27,29 +26,37 @@
     <button id="start-mission-button">Start Mission</button>
   </div>
 
+  <!-- Game Area Intro Screen -->
   <div id="game-area-screen" class="screen hidden">
     <h2>Welcome to Mars!</h2>
     <p>Your adventure begins now.</p>
     <button id="begin-simulation-button">Begin Simulation</button>
   </div>
 
+  <!-- Mars Ops Center -->
   <div id="mars-ops-screen" class="screen hidden">
+    <h2>Mars Ops Center</h2>
+
+    <!-- Explorer Dashboard -->
     <div class="dashboard">
       <div class="dashboard-content">
         <div id="mission-counter">Missions Completed: 0/3</div>
+
         <div class="badge-overview">
           <div id="badge-scan" class="badge locked">🔒 Scan Master</div>
           <div id="badge-drone" class="badge locked">🔒 Drone Pilot</div>
           <div id="badge-briefs" class="badge locked">🔒 Mission Expert</div>
         </div>
-        <div id="rover" class="rover">
+
+        <div class="rover">
           <div class="rover-body"></div>
           <div class="rover-antenna"></div>
         </div>
-        <div id="rover-text" class="rover-message">Welcome, Explorer!</div>
+        <div id="rover-text" class="rover-message">Initializing R.O.V.E.R...</div>
       </div>
     </div>
 
+    <!-- Ops Center Buttons -->
     <p>Explorer, choose your action:</p>
     <div class="ops-buttons">
       <button id="scan-terrain-button">Scan Terrain</button>
@@ -58,30 +65,45 @@
       <button id="recharge-suit-button">Recharge Suit</button>
     </div>
 
+    <!-- Mission Logbook -->
     <div class="logbook-section">
       <h3>Mission Logbook</h3>
       <div id="logbook"></div>
     </div>
   </div>
 
+  <!-- Panel: Mission Briefs -->
   <div id="mission-briefs-panel" class="panel hidden">
     <h3>Mission Briefs</h3>
-    <div class="mission-brief"><strong>Fix the Air Filter</strong><br />The air filter in Base Alpha is clogged. Replace the filter to ensure clean air for the team.</div>
-    <div class="mission-brief"><strong>Locate the Water Tank</strong><br />Find the underground water tank in Quadrant 42B to secure a water supply.</div>
-    <div class="mission-brief"><strong>Feed the Plant Module</strong><br />The plant module needs nutrients. Add the nutrient pack to keep the plants growing.</div>
+    <div class="mission-brief">
+      <strong>Fix the Air Filter</strong>
+      <p>The air filter in Base Alpha is clogged. Replace the filter to ensure clean air for the team.</p>
+    </div>
+    <div class="mission-brief">
+      <strong>Locate the Water Tank</strong>
+      <p>Find the underground water tank in Quadrant 42B to secure a water supply.</p>
+    </div>
+    <div class="mission-brief">
+      <strong>Feed the Plant Module</strong>
+      <p>The plant module needs nutrients. Add the nutrient pack to keep the plants growing.</p>
+    </div>
     <button id="close-briefs-button">Close</button>
   </div>
 
+  <!-- Panel: Scan Results -->
   <div id="scan-result-panel" class="panel hidden">
+    <h3>Scan Results</h3>
     <div class="scan-grid"></div>
-    <p id="scan-discovery"></p>
+    <p id="scan-discovery">[scan results]</p>
     <button id="close-scan-button">Close</button>
   </div>
 
+  <!-- Panel: Drone Deployment -->
   <div id="drone-result-panel" class="panel hidden">
+    <h3>Drone Deployment</h3>
     <p id="drone-countdown">Launching in 3...</p>
     <div class="drone-feed"></div>
-    <p id="drone-log"></p>
+    <p id="drone-log">[drone activity]</p>
     <button id="close-drone-button">Close</button>
   </div>
 
