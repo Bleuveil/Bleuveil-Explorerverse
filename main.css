@@ -1,52 +1,54 @@
 body {
   background-color: #000033;
-  color: white;
-  font-family: 'Helvetica Neue', sans-serif;
   margin: 0;
-  padding: 0;
+  font-family: sans-serif;
+  color: white;
 }
 
-.screen {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: 20px;
-  text-align: center;
-}
-
+/* Hide screen */
 .hidden {
   display: none;
 }
 
+/* Shared screen styling */
+.screen {
+  text-align: center;
+  padding: 30px;
+  max-width: 600px;
+  margin: auto;
+}
+
+/* Button styling */
 button {
-  margin-top: 20px;
+  display: block;
+  width: 200px;
   padding: 15px 25px;
-  font-size: 1.2em;
+  margin: 30px auto;
+  font-size: 1.3em;
   font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.2s ease;
-}
-
-/* Launch Mission = Green */
-#launch-button {
-  background-color: #28a745;
   color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-#launch-button:hover {
-  background-color: #218838;
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
 }
 
-/* Start Mission = Orange */
+button:active {
+  background-color: #004085;
+  transform: translateY(0);
+}
+
+#launch-button {
+  background-color: #4CAF50;
+}
+
 #start-mission-button {
-  background-color: #ffc107;
+  background-color: #FFC107;
   color: #333;
-}
-
-#start-mission-button:hover {
-  background-color: #e0a800;
 }
