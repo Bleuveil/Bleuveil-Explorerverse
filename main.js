@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     titleScreen.classList.add('hidden');
     missionBriefingScreen.classList.add('hidden');
     gameAreaScreen.classList.add('hidden');
-
     screenToShow.classList.remove('hidden');
   }
 
@@ -26,6 +25,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // Start at title screen
   showScreen(titleScreen);
 });
