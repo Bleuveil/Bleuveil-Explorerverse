@@ -2,55 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#162447" />
+  <link rel="stylesheet" href="main.css" />
   <title>BLEUVEIL Explorerverse</title>
-  <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
+
+  <!-- TITLE SCREEN -->
   <div id="title-screen" class="screen">
     <h1>BLEUVEIL Explorerverse</h1>
     <p>Welcome, Explorer. Prepare for your Mars assignment. Safety protocols: engaged.</p>
     <button id="launch-button">Launch Mission</button>
   </div>
 
+  <!-- MISSION BRIEFING -->
   <div id="mission-briefing-screen" class="screen hidden">
     <h2>Mars Mission Briefing</h2>
-    <p><strong>Mission Objective:</strong> Establish Mars Base Alpha.</p>
-    <p><strong>Safety Check:</strong> Air quality nominal.</p>
-    <p><strong>Exploration Area:</strong> Quadrant 42B.</p>
+    <p>Mission Objective: Establish Mars Base Alpha.</p>
+    <p>Safety Check: Air quality nominal.</p>
+    <p>Exploration Area: Quadrant 42B.</p>
     <p>Good luck, Explorer!</p>
     <button id="start-mission-button">Start Mission</button>
   </div>
 
+  <!-- GAME AREA -->
   <div id="game-area-screen" class="screen hidden">
     <h2>Welcome to Mars!</h2>
     <p>Your adventure begins now.</p>
     <button id="begin-simulation-button">Begin Simulation</button>
   </div>
 
+  <!-- OPS CENTER -->
   <div id="mars-ops-screen" class="screen hidden">
-    <h2>Mars Ops Center</h2>
-
     <div class="dashboard">
-      <div id="mission-counter">Missions Completed: 0/3</div>
-      <div class="badge-overview">
-        <div id="badge-scan" class="badge locked">🔒 Scan Master</div>
-        <div id="badge-drone" class="badge locked">🔒 Drone Pilot</div>
-        <div id="badge-briefs" class="badge locked">🔒 Mission Expert</div>
+      <div class="dashboard-content">
+        <div id="mission-counter">Missions Completed: 0/3</div>
+        <div class="badge-overview">
+          <span id="badge-scan" class="badge locked">🔒 Scan Master</span>
+          <span id="badge-drone" class="badge locked">🔒 Drone Pilot</span>
+          <span id="badge-briefs" class="badge locked">🔒 Mission Expert</span>
+        </div>
+        <div class="rover-message" id="rover-text">Welcome, Explorer!</div>
       </div>
-      <div class="rover">
-        <div class="rover-body"></div>
-        <div class="rover-antenna"></div>
-      </div>
-      <div id="rover-text" class="rover-message">Initializing R.O.V.E.R...</div>
     </div>
 
-    <p>Explorer, choose your action:</p>
     <div class="ops-buttons">
       <button id="scan-terrain-button">Scan Terrain</button>
       <button id="deploy-drone-button">Deploy Recon Drone</button>
       <button id="view-briefs-button">View Mission Briefs</button>
       <button id="recharge-suit-button">Recharge Suit</button>
+      <button id="enter-suit-sim-button">Enter Suit Simulation</button>
     </div>
 
     <div class="logbook-section">
@@ -59,36 +61,52 @@
     </div>
   </div>
 
-  <!-- Panels -->
+  <!-- SUIT SIMULATION -->
+  <div id="suit-sim-screen" class="screen hidden">
+    <div class="suit-hud">
+      <div class="hud-item">Oxygen: <span id="oxygen-level">100%</span></div>
+      <div class="hud-item">Pressure: <span id="pressure-reading">0.6 kPa</span></div>
+      <div class="hud-item">Mission: <span id="mission-marker">Explore Rover Dock</span></div>
+    </div>
+
+    <div class="rover-message" id="rover-sim-text">Let’s explore the Rover Dock!</div>
+
+    <div class="mars-map">
+      <div class="map-zone" id="rover-dock">Rover Dock</div>
+      <div class="map-zone" id="habitat-module">Habitat Module</div>
+      <div class="map-zone" id="power-array">Power Array</div>
+      <div class="map-zone" id="greenhouse">Greenhouse</div>
+    </div>
+
+    <button id="return-to-ops-button">Return to Ops Center</button>
+  </div>
+
+  <!-- PANELS -->
   <div id="mission-briefs-panel" class="panel hidden">
-    <h3>Mission Briefs</h3>
-    <div class="mission-brief">
-      <strong>Fix the Air Filter</strong><br/>
-      The air filter in Base Alpha is clogged. Replace the filter to ensure clean air for the team.
-    </div>
-    <div class="mission-brief">
-      <strong>Locate the Water Tank</strong><br/>
-      Find the underground water tank in Quadrant 42B to secure a water supply.
-    </div>
-    <div class="mission-brief">
-      <strong>Feed the Plant Module</strong><br/>
-      The plant module needs nutrients. Add the nutrient pack to keep the plants growing.
-    </div>
+    <div class="mission-brief"><strong>Fix the Air Filter</strong><br/>Replace the filter to ensure clean air for the team.</div>
+    <div class="mission-brief"><strong>Locate the Water Tank</strong><br/>Secure underground water supply in Quadrant 42B.</div>
+    <div class="mission-brief"><strong>Feed the Plant Module</strong><br/>Add nutrient packs to keep the plants growing.</div>
     <button id="close-briefs-button">Close</button>
   </div>
 
   <div id="scan-result-panel" class="panel hidden">
-    <h3>Scan Results</h3>
     <div class="scan-grid"></div>
-    <p id="scan-discovery">Basalt rock formation detected.</p>
+    <p id="scan-discovery"></p>
     <button id="close-scan-button">Close</button>
   </div>
 
   <div id="drone-result-panel" class="panel hidden">
-    <h3>Drone Deployment</h3>
     <p id="drone-countdown">Launching in 3...</p>
-    <div id="drone-log" class="drone-feed"></div>
+    <div class="drone-feed" id="drone-log"></div>
     <button id="close-drone-button">Close</button>
+  </div>
+
+  <!-- SOIL SENSOR PANEL -->
+  <div id="soil-sensor-panel" class="panel hidden">
+    <p>Low temp detected. Stabilizing with BlueCore.</p>
+    <p>Deploy the soil sensor?</p>
+    <button id="deploy-soil-sensor-button">Deploy</button>
+    <button id="cancel-soil-sensor-button">Cancel</button>
   </div>
 
   <script src="main.js"></script>
